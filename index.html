@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bilal Tariq — Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&family=Barlow+Condensed:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #020815;
+      --navy:      #050e24;
+      --blue:      #0a1f4e;
+      --accent:    #1e6fff;
+      --cyan:      #00cfff;
+      --white:     #e8f4ff;
+      --muted:     #5a7aaa;
+      --red:       #ff2d55;
+      --font-ui:   'Rajdhani', sans-serif;
+      --font-mono: 'Share Tech Mono', monospace;
+      --font-cond: 'Barlow Condensed', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--white);
+      font-family: var(--font-ui);
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.07) 2px, rgba(0,0,0,0.07) 4px);
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      top: -30vw;
+      right: -20vw;
+      width: 80vw;
+      height: 80vw;
+      border-radius: 50%;
+      border: 1px solid rgba(30,111,255,0.07);
+      box-shadow: 0 0 0 8vw rgba(30,111,255,0.025), 0 0 0 16vw rgba(30,111,255,0.015), 0 0 0 24vw rgba(30,111,255,0.008);
+      pointer-events: none;
+      z-index: 0;
+      animation: orb-pulse 8s ease-in-out infinite;
+    }
+
+    @keyframes orb-pulse {
+      0%, 100% { transform: scale(1); opacity: 0.7; }
+      50% { transform: scale(1.05); opacity: 1; }
+    }
+
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      height: 56px;
+      display: flex;
+      align-items: stretch;
+      background: rgba(2, 8, 21, 0.93);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(30,111,255,0.3);
+    }
+
+    nav::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 3px;
+      background: var(--cyan);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      padding: 0 2rem 0 1.5rem;
+      font-family: var(--font-cond);
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      gap: 4px;
+      border-right: 1px solid rgba(30,111,255,0.25);
+    }
+
+    .nav-logo-slash { color: var(--accent); font-weight: 300; }
+
+    .nav-links {
+      display: flex;
+      align-items: stretch;
+      list-style: none;
+      margin-left: auto;
+    }
+
+    .nav-links a {
+      display: flex;
+      align-items: center;
+      padding: 0 1.4rem;
+      font-family: var(--font-cond);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+      gap: 6px;
+    }
+
+    .nav-links a .num {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      color: var(--accent);
+    }
+
+    .nav-links a:hover { color: var(--cyan); }
+
+    main { padding-top: 56px; position: relative; z-index: 1; }
+
+    section {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 5rem 2rem;
+    }
+
+    #hero {
+      padding-top: 8rem;
+      padding-bottom: 6rem;
+      position: relative;
+    }
+
+    #hero::before {
+      content: '';
+      position: absolute;
+      top: 0; right: -5%;
+      width: 50%;
+      height: 100%;
+      background: linear-gradient(135deg, transparent 45%, rgba(30,111,255,0.03) 45%);
+      pointer-events: none;
+    }
+
+    .hero-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-eyebrow-line { width: 40px; height: 1px; background: var(--cyan); }
+
+    .hero-eyebrow span {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--cyan);
+    }
+
+    .hero-name {
+      font-family: var(--font-cond);
+      font-size: clamp(3.5rem, 10vw, 7rem);
+      font-weight: 700;
+      line-height: 0.9;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 0.2rem;
+    }
+
+    .hero-name-accent {
+      display: block;
+      color: var(--cyan);
+      text-shadow: 0 0 40px rgba(0,207,255,0.35);
+    }
+
+    .hero-slash-row {
+      margin: 1.5rem 0 2rem;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: rgba(30,111,255,0.25);
+      letter-spacing: 0.3em;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .hero-sub {
+      font-size: 1rem;
+      color: var(--muted);
+      max-width: 480px;
+      line-height: 1.9;
+      margin-bottom: 2.5rem;
+      border-left: 2px solid var(--accent);
+      padding-left: 1rem;
+    }
+
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      padding: 10px 28px;
+      font-family: var(--font-cond);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transform: skewX(-8deg);
+      transition: all 0.15s;
+      cursor: pointer;
+    }
+
+    .btn span { display: inline-block; transform: skewX(8deg); }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
+    }
+
+    .btn-primary:hover { background: var(--cyan); color: var(--bg); box-shadow: 0 0 20px rgba(0,207,255,0.4); }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--white);
+      border: 1px solid rgba(30,111,255,0.45);
+      clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
+    }
+
+    .btn-ghost:hover { border-color: var(--cyan); color: var(--cyan); background: rgba(0,207,255,0.05); }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      margin-bottom: 3rem;
+    }
+
+    .section-num {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+      margin-right: 1rem;
+    }
+
+    .section-title {
+      font-family: var(--font-cond);
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding-right: 1.5rem;
+      position: relative;
+    }
+
+    .section-title::after { content: '/'; position: absolute; right: 0; color: var(--accent); font-weight: 300; }
+
+    .section-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(30,111,255,0.5), transparent);
+      margin-left: 1rem;
+    }
+
+    #about { background: rgba(10,31,78,0.12); }
+
+    .about-body {
+      font-size: 15px;
+      color: #8aa8cc;
+      max-width: 580px;
+      line-height: 1.9;
+      margin-bottom: 2.5rem;
+    }
+
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+    .info-panel {
+      border: 1px solid rgba(30,111,255,0.25);
+      background: rgba(5,14,36,0.8);
+      padding: 1.25rem 1.5rem;
+      position: relative;
+      clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+    }
+
+    .info-panel::before {
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      width: 0; height: 0;
+      border-style: solid;
+      border-width: 0 12px 12px 0;
+      border-color: transparent var(--accent) transparent transparent;
+    }
+
+    .info-panel-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+
+    .tag-list { display: flex; flex-wrap: wrap; gap: 6px; }
+
+    .tag {
+      font-family: var(--font-cond);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      padding: 3px 10px;
+      background: rgba(30,111,255,0.12);
+      color: var(--cyan);
+      border: 1px solid rgba(0,207,255,0.2);
+      text-transform: uppercase;
+      clip-path: polygon(4px 0, 100% 0, calc(100% - 4px) 100%, 0 100%);
+    }
+
+    .project-card {
+      border: 1px solid rgba(30,111,255,0.2);
+      background: rgba(5,14,36,0.7);
+      padding: 1.75rem;
+      margin-bottom: 1.25rem;
+      position: relative;
+      clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .project-card:hover { border-color: rgba(0,207,255,0.4); background: rgba(10,31,78,0.7); }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      width: 0; height: 0;
+      border-style: solid;
+      border-width: 0 20px 20px 0;
+      border-color: transparent rgba(30,111,255,0.35) transparent transparent;
+    }
+
+    .project-card::after {
+      content: '';
+      position: absolute;
+      left: 0; top: 20%; bottom: 20%;
+      width: 2px;
+      background: linear-gradient(180deg, transparent, var(--accent), transparent);
+    }
+
+    .project-card:hover::after { background: linear-gradient(180deg, transparent, var(--cyan), transparent); }
+
+    .project-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .project-title {
+      font-family: var(--font-cond);
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .project-badge {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      padding: 3px 10px;
+      background: rgba(255,45,85,0.12);
+      color: var(--red);
+      border: 1px solid rgba(255,45,85,0.3);
+      white-space: nowrap;
+      letter-spacing: 0.1em;
+      clip-path: polygon(4px 0, 100% 0, calc(100% - 4px) 100%, 0 100%);
+    }
+
+    .project-desc { font-size: 14px; color: #6a8ab0; line-height: 1.8; margin-bottom: 1rem; }
+
+    .project-tech { display: flex; flex-wrap: wrap; gap: 6px; }
+
+    .tech-chip {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--muted);
+      padding: 2px 10px;
+      border: 1px solid rgba(30,111,255,0.2);
+      clip-path: polygon(3px 0, 100% 0, calc(100% - 3px) 100%, 0 100%);
+    }
+
+    #skills { background: rgba(10,31,78,0.08); }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 1rem;
+    }
+
+    .skill-group {
+      background: rgba(5,14,36,0.8);
+      border: 1px solid rgba(30,111,255,0.2);
+      padding: 1.25rem 1.5rem;
+      position: relative;
+      clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%);
+    }
+
+    .skill-group::before {
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      width: 0; height: 0;
+      border-style: solid;
+      border-width: 0 10px 10px 0;
+      border-color: transparent rgba(30,111,255,0.3) transparent transparent;
+    }
+
+    .skill-group-title {
+      font-family: var(--font-cond);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid rgba(30,111,255,0.2);
+    }
+
+    .skill-group ul { list-style: none; font-size: 13px; color: #7090b8; line-height: 2; font-weight: 500; }
+
+    .skill-group ul li::before { content: '> '; color: var(--accent); font-family: var(--font-mono); font-size: 11px; }
+
+    .contact-body { font-size: 15px; color: #6a8ab0; margin-bottom: 2rem; max-width: 480px; }
+
+    .contact-links { display: flex; flex-direction: column; gap: 0.5rem; }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      font-family: var(--font-cond);
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      transition: all 0.2s;
+      padding: 0.6rem 1rem;
+      border: 1px solid transparent;
+      clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+    }
+
+    .contact-link:hover { background: rgba(30,111,255,0.08); border-color: rgba(30,111,255,0.25); }
+    .contact-link:hover .contact-link-text { color: var(--cyan); }
+
+    .contact-link-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      width: 80px;
+      flex-shrink: 0;
+    }
+
+    .contact-link-sep { color: rgba(30,111,255,0.4); margin: 0 0.75rem; font-family: var(--font-mono); }
+    .contact-link-text { color: #8aaac8; }
+
+    .section-divider {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      opacity: 0.25;
+    }
+
+    .section-divider::before, .section-divider::after { content: ''; flex: 1; height: 1px; background: var(--accent); }
+
+    .section-divider span { font-family: var(--font-mono); font-size: 10px; color: var(--accent); letter-spacing: 0.1em; }
+
+    footer {
+      border-top: 1px solid rgba(30,111,255,0.2);
+      padding: 2rem;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    footer p { font-family: var(--font-mono); font-size: 11px; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; }
+    footer p::before { content: '// '; color: rgba(30,111,255,0.3); }
+    footer p::after { content: ' //'; color: rgba(30,111,255,0.3); }
+    footer a { color: var(--accent); text-decoration: none; }
+    footer a:hover { color: var(--cyan); }
+
+    @media (max-width: 600px) {
+      .about-grid { grid-template-columns: 1fr; }
+      .nav-logo { padding: 0 1rem; font-size: 18px; }
+      .nav-links a { padding: 0 0.75rem; font-size: 11px; }
+      section { padding: 4rem 1.25rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-logo">BT<span class="nav-logo-slash">/</span></div>
+    <ul class="nav-links">
+      <li><a href="#about"><span class="num">01</span> About</a></li>
+      <li><a href="#projects"><span class="num">02</span> Projects</a></li>
+      <li><a href="#skills"><span class="num">03</span> Skills</a></li>
+      <li><a href="#contact"><span class="num">04</span> Contact</a></li>
+    </ul>
+  </nav>
+
+  <main>
+
+    <section id="hero">
+      <div class="hero-eyebrow">
+        <div class="hero-eyebrow-line"></div>
+        <span>BSc Computer Science &nbsp;·&nbsp; University of Westminster</span>
+      </div>
+      <h1 class="hero-name">
+        Bilal<br />
+        <span class="hero-name-accent">Tariq</span>
+      </h1>
+      <div class="hero-slash-row">// // // // // // // // // // // // // // // // // // // //</div>
+      <p class="hero-sub">
+        Final-year CS student with a focus on cybersecurity and DevOps.
+        CompTIA Security+ certified. Interested in how infrastructure
+        breaks — and how to stop it from happening.
+      </p>
+      <div class="hero-btns">
+        <a class="btn btn-primary" href="#projects"><span>View Projects</span></a>
+        <a class="btn btn-ghost" href="https://github.com/Bilal05Tariq" target="_blank" rel="noopener"><span>GitHub</span></a>
+        <a class="btn btn-ghost" href="https://linkedin.com/in/bilal-tariq-56bb352a5" target="_blank" rel="noopener"><span>LinkedIn</span></a>
+      </div>
+    </section>
+
+    <div class="section-divider"><span>///</span></div>
+
+    <section id="about">
+      <div class="section-header">
+        <span class="section-num">01</span>
+        <h2 class="section-title">About</h2>
+        <div class="section-line"></div>
+      </div>
+      <p class="about-body">
+        I'm a Computer Science student at the University of Westminster, graduating July 2026
+        with a predicted First Class Honours. My final year project involved building a
+        cloud-based honeypot with automated threat analysis — combining my interest in
+        defensive security with real-world cloud infrastructure.
+      </p>
+      <div class="about-grid">
+        <div class="info-panel">
+          <p class="info-panel-label">Certifications</p>
+          <div class="tag-list">
+            <span class="tag">CompTIA Security+</span>
+            <span class="tag">BSc Computer Science</span>
+          </div>
+        </div>
+        <div class="info-panel">
+          <p class="info-panel-label">Currently looking for</p>
+          <div class="tag-list">
+            <span class="tag">IT Support</span>
+            <span class="tag">Systems Engineering</span>
+            <span class="tag">DevOps</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"><span>///</span></div>
+
+    <section id="projects">
+      <div class="section-header">
+        <span class="section-num">02</span>
+        <h2 class="section-title">Projects</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="project-card">
+        <div class="project-header">
+          <span class="project-title">Cloud-Based Honeypot with Automated Threat Analysis</span>
+          <span class="project-badge">FYP</span>
+        </div>
+        <p class="project-desc">
+          Deployed a deception environment in the cloud to capture and analyse real attack
+          traffic. Built an automated pipeline to classify threat types and generate reports,
+          combining cloud infrastructure with practical defensive security techniques.
+        </p>
+        <div class="project-tech">
+          <span class="tech-chip">Python</span>
+          <span class="tech-chip">AWS</span>
+          <span class="tech-chip">Threat Analysis</span>
+          <span class="tech-chip">Linux</span>
+        </div>
+      </div>
+      <div class="project-card" style="opacity: 0.4; border-style: dashed;">
+        <div class="project-header">
+          <span class="project-title">More projects coming soon</span>
+        </div>
+        <p class="project-desc">Additional work will be added here.</p>
+      </div>
+    </section>
+
+    <div class="section-divider"><span>///</span></div>
+
+    <section id="skills">
+      <div class="section-header">
+        <span class="section-num">03</span>
+        <h2 class="section-title">Skills</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-group">
+          <p class="skill-group-title">Languages</p>
+          <ul>
+            <li>Python</li>
+            <li>Bash / Shell</li>
+            <li>HTML / CSS</li>
+          </ul>
+        </div>
+        <div class="skill-group">
+          <p class="skill-group-title">Security</p>
+          <ul>
+            <li>CompTIA Security+</li>
+            <li>Penetration Testing</li>
+            <li>OSINT</li>
+            <li>Threat Analysis</li>
+          </ul>
+        </div>
+        <div class="skill-group">
+          <p class="skill-group-title">Infrastructure</p>
+          <ul>
+            <li>AWS</li>
+            <li>Linux (Ubuntu)</li>
+            <li>Networking</li>
+            <li>Windows Server</li>
+          </ul>
+        </div>
+        <div class="skill-group">
+          <p class="skill-group-title">Tools</p>
+          <ul>
+            <li>Git / GitHub</li>
+            <li>VS Code</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"><span>///</span></div>
+
+    <section id="contact">
+      <div class="section-header">
+        <span class="section-num">04</span>
+        <h2 class="section-title">Contact</h2>
+        <div class="section-line"></div>
+      </div>
+      <p class="contact-body">Open to IT support, systems engineering, and DevOps opportunities.</p>
+      <div class="contact-links">
+        <a class="contact-link" href="https://linkedin.com/in/bilal-tariq-56bb352a5" target="_blank" rel="noopener">
+          <span class="contact-link-label">LinkedIn</span>
+          <span class="contact-link-sep">//</span>
+          <span class="contact-link-text">linkedin.com/in/bilal-tariq-56bb352a5</span>
+        </a>
+        <a class="contact-link" href="https://github.com/Bilal05Tariq" target="_blank" rel="noopener">
+          <span class="contact-link-label">GitHub</span>
+          <span class="contact-link-sep">//</span>
+          <span class="contact-link-text">github.com/Bilal05Tariq</span>
+        </a>
+        <a class="contact-link" href="mailto:your.email@example.com">
+          <span class="contact-link-label">Email</span>
+          <span class="contact-link-sep">//</span>
+          <span class="contact-link-text">your.email@example.com</span>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>Bilal Tariq &nbsp;·&nbsp; <a href="https://github.com/Bilal05Tariq">github.com/Bilal05Tariq</a></p>
+  </footer>
+
+</body>
+</html>
