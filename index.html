@@ -4,513 +4,537 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bilal Tariq — Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&family=Barlow+Condensed:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wdth,wght@0,6..12,75,400;0,6..12,75,700;1,6..12,75,900&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:        #020815;
-      --navy:      #050e24;
-      --blue:      #0a1f4e;
-      --accent:    #1e6fff;
-      --cyan:      #00cfff;
-      --white:     #e8f4ff;
-      --muted:     #5a7aaa;
-      --red:       #ff2d55;
-      --font-ui:   'Rajdhani', sans-serif;
-      --font-mono: 'Share Tech Mono', monospace;
-      --font-cond: 'Barlow Condensed', sans-serif;
+      --blue-dark:  #02086e;
+      --blue-mid:   #0233be;
+      --blue-light: #00d0ff;
+      --white:      #ffffff;
+      --offwhite:   #e8f4ff;
+      --red:        #dc1414;
+      --red-dim:    rgba(220,20,20,0.15);
+      --font: 'Nunito Sans', sans-serif;
     }
 
     html { scroll-behavior: smooth; }
 
     body {
-      background: var(--bg);
+      font-family: var(--font);
+      font-optical-sizing: auto;
+      background: linear-gradient(0deg, var(--blue-dark) 0%, var(--blue-mid) 55%, var(--blue-light) 100%);
+      background-attachment: fixed;
       color: var(--white);
-      font-family: var(--font-ui);
-      font-size: 16px;
-      line-height: 1.6;
       overflow-x: hidden;
+      min-height: 100vh;
     }
 
     body::before {
       content: '';
       position: fixed;
       inset: 0;
-      background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.07) 2px, rgba(0,0,0,0.07) 4px);
+      background: repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,0,0,0.04) 3px, rgba(0,0,0,0.04) 4px);
       pointer-events: none;
       z-index: 9999;
     }
 
-    body::after {
-      content: '';
-      position: fixed;
-      top: -30vw;
-      right: -20vw;
-      width: 80vw;
-      height: 80vw;
-      border-radius: 50%;
-      border: 1px solid rgba(30,111,255,0.07);
-      box-shadow: 0 0 0 8vw rgba(30,111,255,0.025), 0 0 0 16vw rgba(30,111,255,0.015), 0 0 0 24vw rgba(30,111,255,0.008);
-      pointer-events: none;
-      z-index: 0;
-      animation: orb-pulse 8s ease-in-out infinite;
-    }
-
-    @keyframes orb-pulse {
-      0%, 100% { transform: scale(1); opacity: 0.7; }
-      50% { transform: scale(1.05); opacity: 1; }
-    }
-
+    /* ── NAV ── */
     nav {
       position: fixed;
       top: 0; left: 0; right: 0;
       z-index: 1000;
-      height: 56px;
+      height: 54px;
       display: flex;
       align-items: stretch;
-      background: rgba(2, 8, 21, 0.93);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(30,111,255,0.3);
-    }
-
-    nav::before {
-      content: '';
-      position: absolute;
-      left: 0; top: 0; bottom: 0;
-      width: 3px;
-      background: var(--cyan);
+      background: rgba(2,8,110,0.7);
+      backdrop-filter: blur(16px);
+      border-bottom: 2px solid rgba(255,255,255,0.25);
     }
 
     .nav-logo {
       display: flex;
       align-items: center;
-      padding: 0 2rem 0 1.5rem;
-      font-family: var(--font-cond);
+      padding: 0 1.6rem;
+      font-style: italic;
+      font-weight: 900;
       font-size: 22px;
-      font-weight: 700;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--cyan);
-      gap: 4px;
-      border-right: 1px solid rgba(30,111,255,0.25);
+      font-variation-settings: "wdth" 75;
+      letter-spacing: 0.04em;
+      color: var(--white);
+      border-right: 1px solid rgba(255,255,255,0.15);
+      position: relative;
+      flex-shrink: 0;
     }
 
-    .nav-logo-slash { color: var(--accent); font-weight: 300; }
+    .nav-logo::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 10px; bottom: 10px;
+      width: 3px;
+      background: var(--red);
+    }
 
+    .nav-slash { color: var(--blue-light); }
+
+    /* centre the links in remaining space */
     .nav-links {
+      flex: 1;
       display: flex;
       align-items: stretch;
+      justify-content: center;
       list-style: none;
-      margin-left: auto;
     }
 
     .nav-links a {
       display: flex;
       align-items: center;
       padding: 0 1.4rem;
-      font-family: var(--font-cond);
-      font-size: 13px;
-      font-weight: 600;
-      letter-spacing: 0.15em;
+      font-style: italic;
+      font-weight: 900;
+      font-size: 15px;
+      font-variation-settings: "wdth" 75;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: var(--muted);
+      color: rgba(255,255,255,0.5);
       text-decoration: none;
-      transition: color 0.2s;
-      gap: 6px;
+      transition: color 0.15s, background 0.15s;
+      position: relative;
     }
 
-    .nav-links a .num {
-      font-family: var(--font-mono);
-      font-size: 9px;
-      color: var(--accent);
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 50%; right: 50%;
+      height: 2px;
+      background: var(--red);
+      transition: left 0.2s, right 0.2s;
     }
 
-    .nav-links a:hover { color: var(--cyan); }
+    .nav-links a:hover { color: var(--white); }
+    .nav-links a:hover::after { left: 15%; right: 15%; }
+    .nav-links a.active { color: var(--white); }
+    .nav-links a.active::after { left: 15%; right: 15%; }
 
-    main { padding-top: 56px; position: relative; z-index: 1; }
+    main { padding-top: 54px; }
+
+    /* ── SECTION STRUCTURE ── */
+    .section-wrap { position: relative; }
+    .section-wrap:nth-child(even) { background: rgba(0,0,0,0.08); }
 
     section {
-      max-width: 900px;
+      max-width: 960px;
       margin: 0 auto;
-      padding: 5rem 2rem;
-    }
-
-    #hero {
-      padding-top: 8rem;
-      padding-bottom: 6rem;
+      padding: 5.5rem 2rem;
       position: relative;
     }
 
-    #hero::before {
-      content: '';
+    .sec-ghost {
+      font-style: italic;
+      font-weight: 900;
+      font-variation-settings: "wdth" 75;
+      font-size: clamp(5rem, 16vw, 10rem);
+      color: rgba(255,255,255,0.04);
+      letter-spacing: 0.04em;
       position: absolute;
-      top: 0; right: -5%;
-      width: 50%;
-      height: 100%;
-      background: linear-gradient(135deg, transparent 45%, rgba(30,111,255,0.03) 45%);
+      top: 3rem; left: 1rem;
+      line-height: 1;
       pointer-events: none;
-    }
-
-    .hero-eyebrow {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 1.5rem;
-    }
-
-    .hero-eyebrow-line { width: 40px; height: 1px; background: var(--cyan); }
-
-    .hero-eyebrow span {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--cyan);
-    }
-
-    .hero-name {
-      font-family: var(--font-cond);
-      font-size: clamp(3.5rem, 10vw, 7rem);
-      font-weight: 700;
-      line-height: 0.9;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      margin-bottom: 0.2rem;
-    }
-
-    .hero-name-accent {
-      display: block;
-      color: var(--cyan);
-      text-shadow: 0 0 40px rgba(0,207,255,0.35);
-    }
-
-    .hero-slash-row {
-      margin: 1.5rem 0 2rem;
-      font-family: var(--font-mono);
-      font-size: 13px;
-      color: rgba(30,111,255,0.25);
-      letter-spacing: 0.3em;
-      overflow: hidden;
+      user-select: none;
       white-space: nowrap;
     }
 
-    .hero-sub {
-      font-size: 1rem;
-      color: var(--muted);
-      max-width: 480px;
-      line-height: 1.9;
-      margin-bottom: 2.5rem;
-      border-left: 2px solid var(--accent);
-      padding-left: 1rem;
-    }
+    .sec-head { margin-bottom: 2.8rem; position: relative; }
 
-    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      padding: 10px 28px;
-      font-family: var(--font-cond);
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 0.2em;
+    .sec-eyebrow {
+      font-style: italic;
+      font-weight: 900;
+      font-variation-settings: "wdth" 75;
+      font-size: 11px;
+      letter-spacing: 0.25em;
       text-transform: uppercase;
-      text-decoration: none;
-      transform: skewX(-8deg);
-      transition: all 0.15s;
-      cursor: pointer;
+      color: var(--blue-light);
+      margin-bottom: 4px;
     }
 
-    .btn span { display: inline-block; transform: skewX(8deg); }
-
-    .btn-primary {
-      background: var(--accent);
-      color: #fff;
-      clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
-    }
-
-    .btn-primary:hover { background: var(--cyan); color: var(--bg); box-shadow: 0 0 20px rgba(0,207,255,0.4); }
-
-    .btn-ghost {
-      background: transparent;
+    .sec-title {
+      font-style: italic;
+      font-weight: 900;
+      font-variation-settings: "wdth" 75;
+      font-size: clamp(2.8rem, 7vw, 4.5rem);
+      letter-spacing: 0.04em;
       color: var(--white);
-      border: 1px solid rgba(30,111,255,0.45);
-      clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
+      line-height: 0.9;
+      display: inline-block;
     }
 
-    .btn-ghost:hover { border-color: var(--cyan); color: var(--cyan); background: rgba(0,207,255,0.05); }
-
-    .section-header {
-      display: flex;
-      align-items: center;
-      gap: 0;
-      margin-bottom: 3rem;
-    }
-
-    .section-num {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      color: var(--accent);
-      letter-spacing: 0.1em;
-      margin-right: 1rem;
-    }
-
-    .section-title {
-      font-family: var(--font-cond);
-      font-size: 2rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      padding-right: 1.5rem;
-      position: relative;
-    }
-
-    .section-title::after { content: '/'; position: absolute; right: 0; color: var(--accent); font-weight: 300; }
-
-    .section-line {
-      flex: 1;
-      height: 1px;
-      background: linear-gradient(90deg, rgba(30,111,255,0.5), transparent);
-      margin-left: 1rem;
-    }
-
-    #about { background: rgba(10,31,78,0.12); }
-
-    .about-body {
-      font-size: 15px;
-      color: #8aa8cc;
-      max-width: 580px;
-      line-height: 1.9;
-      margin-bottom: 2.5rem;
-    }
-
-    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-
-    .info-panel {
-      border: 1px solid rgba(30,111,255,0.25);
-      background: rgba(5,14,36,0.8);
-      padding: 1.25rem 1.5rem;
-      position: relative;
-      clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
-    }
-
-    .info-panel::before {
+    .sec-title::after {
       content: '';
-      position: absolute;
-      top: 0; right: 0;
-      width: 0; height: 0;
-      border-style: solid;
-      border-width: 0 12px 12px 0;
-      border-color: transparent var(--accent) transparent transparent;
+      display: block;
+      margin-top: 10px;
+      height: 3px;
+      background: var(--red);
+      clip-path: polygon(0 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
     }
 
-    .info-panel-label {
-      font-family: var(--font-mono);
-      font-size: 10px;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 0.75rem;
-    }
-
-    .tag-list { display: flex; flex-wrap: wrap; gap: 6px; }
-
-    .tag {
-      font-family: var(--font-cond);
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      padding: 3px 10px;
-      background: rgba(30,111,255,0.12);
-      color: var(--cyan);
-      border: 1px solid rgba(0,207,255,0.2);
-      text-transform: uppercase;
-      clip-path: polygon(4px 0, 100% 0, calc(100% - 4px) 100%, 0 100%);
-    }
-
-    .project-card {
-      border: 1px solid rgba(30,111,255,0.2);
-      background: rgba(5,14,36,0.7);
-      padding: 1.75rem;
-      margin-bottom: 1.25rem;
-      position: relative;
-      clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
-      transition: border-color 0.2s, background 0.2s;
-    }
-
-    .project-card:hover { border-color: rgba(0,207,255,0.4); background: rgba(10,31,78,0.7); }
-
-    .project-card::before {
-      content: '';
-      position: absolute;
-      top: 0; right: 0;
-      width: 0; height: 0;
-      border-style: solid;
-      border-width: 0 20px 20px 0;
-      border-color: transparent rgba(30,111,255,0.35) transparent transparent;
-    }
-
-    .project-card::after {
-      content: '';
-      position: absolute;
-      left: 0; top: 20%; bottom: 20%;
-      width: 2px;
-      background: linear-gradient(180deg, transparent, var(--accent), transparent);
-    }
-
-    .project-card:hover::after { background: linear-gradient(180deg, transparent, var(--cyan), transparent); }
-
-    .project-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 1rem;
-      margin-bottom: 1rem;
-    }
-
-    .project-title {
-      font-family: var(--font-cond);
-      font-size: 1.15rem;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-    }
-
-    .project-badge {
-      font-family: var(--font-mono);
-      font-size: 10px;
-      padding: 3px 10px;
-      background: rgba(255,45,85,0.12);
-      color: var(--red);
-      border: 1px solid rgba(255,45,85,0.3);
-      white-space: nowrap;
-      letter-spacing: 0.1em;
-      clip-path: polygon(4px 0, 100% 0, calc(100% - 4px) 100%, 0 100%);
-    }
-
-    .project-desc { font-size: 14px; color: #6a8ab0; line-height: 1.8; margin-bottom: 1rem; }
-
-    .project-tech { display: flex; flex-wrap: wrap; gap: 6px; }
-
-    .tech-chip {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      color: var(--muted);
-      padding: 2px 10px;
-      border: 1px solid rgba(30,111,255,0.2);
-      clip-path: polygon(3px 0, 100% 0, calc(100% - 3px) 100%, 0 100%);
-    }
-
-    #skills { background: rgba(10,31,78,0.08); }
-
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
-      gap: 1rem;
-    }
-
-    .skill-group {
-      background: rgba(5,14,36,0.8);
-      border: 1px solid rgba(30,111,255,0.2);
-      padding: 1.25rem 1.5rem;
-      position: relative;
-      clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%);
-    }
-
-    .skill-group::before {
-      content: '';
-      position: absolute;
-      top: 0; right: 0;
-      width: 0; height: 0;
-      border-style: solid;
-      border-width: 0 10px 10px 0;
-      border-color: transparent rgba(30,111,255,0.3) transparent transparent;
-    }
-
-    .skill-group-title {
-      font-family: var(--font-cond);
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--cyan);
-      margin-bottom: 1rem;
-      padding-bottom: 0.5rem;
-      border-bottom: 1px solid rgba(30,111,255,0.2);
-    }
-
-    .skill-group ul { list-style: none; font-size: 13px; color: #7090b8; line-height: 2; font-weight: 500; }
-
-    .skill-group ul li::before { content: '> '; color: var(--accent); font-family: var(--font-mono); font-size: 11px; }
-
-    .contact-body { font-size: 15px; color: #6a8ab0; margin-bottom: 2rem; max-width: 480px; }
-
-    .contact-links { display: flex; flex-direction: column; gap: 0.5rem; }
-
-    .contact-link {
-      display: flex;
-      align-items: center;
-      text-decoration: none;
-      font-family: var(--font-cond);
-      font-size: 15px;
-      font-weight: 600;
-      letter-spacing: 0.05em;
-      transition: all 0.2s;
-      padding: 0.6rem 1rem;
-      border: 1px solid transparent;
-      clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
-    }
-
-    .contact-link:hover { background: rgba(30,111,255,0.08); border-color: rgba(30,111,255,0.25); }
-    .contact-link:hover .contact-link-text { color: var(--cyan); }
-
-    .contact-link-label {
-      font-family: var(--font-mono);
-      font-size: 10px;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--accent);
-      width: 80px;
-      flex-shrink: 0;
-    }
-
-    .contact-link-sep { color: rgba(30,111,255,0.4); margin: 0 0.75rem; font-family: var(--font-mono); }
-    .contact-link-text { color: #8aaac8; }
-
-    .section-divider {
-      max-width: 900px;
+    /* ── P3R DIVIDER ── */
+    .p3r-rule {
+      max-width: 960px;
       margin: 0 auto;
       padding: 0 2rem;
       display: flex;
       align-items: center;
-      gap: 8px;
-      opacity: 0.25;
+      gap: 10px;
     }
+    .p3r-rule::before { content: ''; width: 18px; height: 3px; background: var(--red); flex-shrink: 0; }
+    .p3r-rule::after  { content: ''; flex: 1; height: 1px; background: rgba(255,255,255,0.2); }
 
-    .section-divider::before, .section-divider::after { content: ''; flex: 1; height: 1px; background: var(--accent); }
-
-    .section-divider span { font-family: var(--font-mono); font-size: 10px; color: var(--accent); letter-spacing: 0.1em; }
-
-    footer {
-      border-top: 1px solid rgba(30,111,255,0.2);
-      padding: 2rem;
-      text-align: center;
+    /* ── HERO ── */
+    #hero {
+      min-height: calc(100vh - 54px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-top: 7rem;
+      padding-bottom: 5rem;
       position: relative;
-      z-index: 1;
+      overflow: hidden;
     }
 
-    footer p { font-family: var(--font-mono); font-size: 11px; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; }
-    footer p::before { content: '// '; color: rgba(30,111,255,0.3); }
-    footer p::after { content: ' //'; color: rgba(30,111,255,0.3); }
-    footer a { color: var(--accent); text-decoration: none; }
-    footer a:hover { color: var(--cyan); }
+    #hero .bg-mark {
+      font-style: italic;
+      font-weight: 900;
+      font-variation-settings: "wdth" 75;
+      font-size: min(42vw, 360px);
+      color: rgba(255,255,255,0.04);
+      position: absolute;
+      right: -2%; top: 50%;
+      transform: translateY(-50%);
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+    }
 
-    @media (max-width: 600px) {
+    .hero-eyebrow { display: flex; align-items: center; gap: 10px; margin-bottom: 1.4rem; }
+    .hero-eyebrow-bar { width: 28px; height: 3px; background: var(--red); flex-shrink: 0; }
+    .hero-eyebrow-text {
+      font-style: italic; font-weight: 900; font-variation-settings: "wdth" 75;
+      font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--blue-light);
+    }
+
+    .hero-name {
+      font-style: italic; font-weight: 900; font-variation-settings: "wdth" 75;
+      font-size: clamp(5rem, 16vw, 10rem);
+      line-height: 0.85; letter-spacing: 0.02em; color: var(--white); margin-bottom: 0.15em;
+    }
+
+    .hero-label-strip {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.22);
+      padding: 4px 14px 4px 0;
+      margin-bottom: 1.6rem; margin-top: 0.6rem;
+    }
+    .hero-label-bar { width: 4px; height: 28px; background: var(--red); flex-shrink: 0; }
+    .hero-label-text {
+      font-style: italic; font-weight: 900; font-variation-settings: "wdth" 75;
+      font-size: 14px; letter-spacing: 0.12em; color: var(--white);
+    }
+    .hero-label-sub {
+      font-style: italic; font-weight: 900; font-variation-settings: "wdth" 75;
+      font-size: 11px; letter-spacing: 0.06em; color: var(--blue-light);
+    }
+
+    .hero-sub {
+      font-size: 14px; color: rgba(255,255,255,0.6);
+      max-width: 500px; line-height: 1.9; margin-bottom: 2.5rem;
+      font-style: normal; font-weight: 400; font-variation-settings: "wdth" 75;
+      border-left: 2px solid rgba(255,255,255,0.2); padding-left: 1rem;
+    }
+
+    .hero-btns { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+
+    .btn {
+      display: inline-flex; align-items: center;
+      padding: 9px 28px;
+      font-style: italic; font-weight: 900; font-variation-settings: "wdth" 75;
+      font-size: 15px; letter-spacing: 0.1em;
+      text-decoration: none; cursor: pointer; border: none;
+      transform: skewX(-8deg); transition: all 0.12s;
+    }
+    .btn span { display: inline-block; transform: skewX(8deg); }
+    .btn-primary { background: var(--white); color: var(--blue-dark); }
+    .btn-primary:hover { background: var(--blue-light); }
+    .btn-ghost { background: rgba(255,255,255,0.1); color: var(--white); border: 1px solid rgba(255,255,255,0.35); }
+    .btn-ghost:hover { background: rgba(255,255,255,0.2); }
+
+    /* ── ABOUT ── */
+    .about-body {
+      font-size: 14px; color: rgba(255,255,255,0.65);
+      max-width: 620px; line-height: 2; margin-bottom: 2.5rem;
+      font-style: normal; font-weight: 400; font-variation-settings: "wdth" 75;
+    }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+    .info-panel {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 1.25rem 1.5rem; position: relative;
+      clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+    }
+    .info-panel::after {
+      content: ''; position: absolute; top: 0; right: 0;
+      width: 0; height: 0; border-style: solid;
+      border-width: 0 12px 12px 0;
+      border-color: transparent rgba(255,255,255,0.35) transparent transparent;
+    }
+    .info-panel-label {
+      font-style: italic; font-weight: 900; font-variation-settings: "wdth" 75;
+      font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--blue-light); margin-bottom: 0.8rem;
+    }
+    .tag-list { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tag {
+      font-style: italic; font-weight: 900; font-variation-settings: "wdth" 75;
+      font-size: 12px; letter-spacing: 0.06em; padding: 3px 12px;
+      background: rgba(255,255,255,0.1); color: var(--white);
+      border: 1px solid rgba(255,255,255,0.22);
+      transform: skewX(-4deg); display: inline-block;
+    }
+
+    /* ── EXPANDABLE ROWS (shared by Projects, Learning Tree, Modules) ── */
+    .expand-list { display: flex; flex-direction: column; gap: 0; }
+
+    .expand-item { cursor: pointer; }
+
+    .expand-row {
+      display: flex; align-items: stretch;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-bottom: none;
+      transition: background 0.15s;
+      user-select: none; position: relative;
+    }
+    .expand-list .expand-item:last-child .expand-row { border-bottom: 1px solid rgba(255,255,255,0.15); }
+    .expand-item.open .expand-row { border-bottom: none; background: rgba(255,255,255,0.14); }
+    .expand-item:not(.open) .expand-row:hover { background: rgba(255,255,255,0.12); }
+
+    .expand-num {
+      font-style: italic; font-weight: 900; font-variation-settings: "wdth" 75;
+      font-size: 1.3rem; letter-spacing: 0.06em;
+      color: var(--blue-dark);
+      background: rgba(255,255,255,0.82);
+      padding: 0 16px; min-height: 56px;
+      display: flex; align-items: center; flex-shrink: 0;
+      transition: background 0.15s, color 0.15s;
+    }
+    .expand-item.open .expand-num { background: var(--white); color: var(--red); }
+
+    .expand-row-content { flex: 1; padding: 12px 16px; }
+
+    .expand-category {
+      font-style: italic; font-weight: 900; font-variation-settings: "wdth" 75;
+      font-size: 8px; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--blue-light); margin-bottom: 2px;
+    }
+
+    .expand-title {
+      font-style: italic; font-weight: 900; font-variation-settings: "wdth" 75;
+      font-size: 1.2rem; letter-spacing: 0.06em;
+      color: rgba(255,255,255,0.5); transition: color 0.15s;
+    }
+    .expand-item.open .expand-title { color: var(--white); }
+
+    .expand-meta {
+      display: flex; align-items: center; gap: 10px;
+      padding: 0 16px; border-left: 1px solid rgba(255,255,255,0.1);
+      flex-shrink: 0;
+    }
+
+    .expand-badge {
+      font-style: italic; font-weight: 900; font-variation-settings: "wdth" 75;
+      font-size: 9px; letter-spacing: 0.1em; padding: 2px 9px;
+      transform: skewX(-4deg); display: inline-block; white-space: nowrap;
+    }
+    .badge-red   { background: var(--red-dim); color: #ff6b6b; border: 1px solid rgba(220,20,20,0.35); }
+    .badge-blue  { background: rgba(0,208,255,0.12); color: var(--blue-light); border: 1px solid rgba(0,208,255,0.3); }
+    .badge-grey  { background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.3); border: 1px solid rgba(255,255,255,0.1); }
+
+    .expand-chevron {
+      width: 38px; display: flex; align-items: center; justify-content: center;
+      color: rgba(255,255,255,0.3);
+      font-style: italic; font-weight: 900; font-variation-settings: "wdth" 75;
+      font-size: 1.3rem; flex-shrink: 0;
+      transition: transform 0.22s, color 0.15s;
+    }
+    .expand-item.open .expand-chevron { transform: rotate(90deg); color: var(--white); }
+
+    /* Expanded body */
+    .expand-body {
+      display: none;
+      background: rgba(2,8,110,0.45);
+      border: 1px solid rgba(255,255,255,0.14);
+      border-top: none;
+      padding: 1.5rem 2rem 1.5rem 2.5rem;
+      position: relative;
+    }
+    .expand-item.open .expand-body { display: block; }
+
+    .expand-body::before {
+      content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+      width: 3px; background: var(--red);
+    }
+
+    /* body typography */
+    .expand-desc {
+      font-size: 13px; color: rgba(255,255,255,0.6);
+      line-height: 1.9; margin-bottom: 1.25rem;
+      font-style: normal; font-weight: 400; font-variation-settings: "wdth" 75;
+      max-width: 680px;
+    }
+
+    .expand-topics {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem; margin-bottom: 1.25rem;
+    }
+
+    .expand-topic-group {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 1rem 1.2rem;
+      clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 0 100%);
+    }
+    .expand-topic-heading {
+      font-style: italic; font-weight: 900; font-variation-settings: "wdth" 75;
+      font-size: 0.82rem; letter-spacing: 0.1em;
+      color: var(--blue-light); margin-bottom: 0.6rem;
+      padding-bottom: 0.4rem; border-bottom: 1px solid rgba(0,208,255,0.2);
+    }
+    .expand-topic-group ul {
+      list-style: none; font-size: 12px; color: rgba(255,255,255,0.52);
+      line-height: 2.1; font-style: normal; font-weight: 400; font-variation-settings: "wdth" 75;
+    }
+    .expand-topic-group ul li::before { content: '▸ '; color: var(--red); font-size: 9px; }
+
+    /* doc/github links row */
+    .expand-links {
+      display: flex; gap: 0.75rem; flex-wrap: wrap;
+      padding-top: 1.1rem; border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .expand-link {
+      display: inline-flex; align-items: center; gap: 8px;
+      text-decoration: none;
+      font-style: italic; font-weight: 900; font-variation-settings: "wdth" 75;
+      font-size: 12px; letter-spacing: 0.08em;
+      padding: 7px 16px;
+      transform: skewX(-6deg);
+      transition: all 0.12s;
+    }
+    .expand-link span { display: inline-block; transform: skewX(6deg); }
+
+    .expand-link-primary {
+      background: rgba(255,255,255,0.12);
+      color: var(--white);
+      border: 1px solid rgba(255,255,255,0.3);
+    }
+    .expand-link-primary:hover { background: rgba(255,255,255,0.22); }
+
+    .expand-link-ghost {
+      background: transparent;
+      color: var(--blue-light);
+      border: 1px solid rgba(0,208,255,0.35);
+    }
+    .expand-link-ghost:hover { background: rgba(0,208,255,0.1); }
+
+    .expand-link-note {
+      font-size: 10px; color: rgba(255,255,255,0.35);
+      font-style: italic; font-weight: 900; font-variation-settings: "wdth" 75;
+      letter-spacing: 0.06em; align-self: center;
+      font-style: normal; font-weight: 400;
+    }
+
+    /* tech chips */
+    .tech-row { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 1.1rem; }
+    .tech-chip {
+      font-style: italic; font-weight: 900; font-variation-settings: "wdth" 75;
+      font-size: 11px; color: var(--blue-light);
+      padding: 2px 10px; border: 1px solid rgba(0,208,255,0.3);
+      transform: skewX(-3deg); display: inline-block;
+    }
+
+    /* ── SKILLS ── */
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+
+    .skill-group {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.16);
+      padding: 1.25rem 1.5rem; position: relative;
+      clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%);
+    }
+    .skill-group::before {
+      content: ''; position: absolute; top: 0; right: 0;
+      width: 0; height: 0; border-style: solid; border-width: 0 10px 10px 0;
+      border-color: transparent rgba(255,255,255,0.28) transparent transparent;
+    }
+    .skill-group-title {
+      font-style: italic; font-weight: 900; font-variation-settings: "wdth" 75;
+      font-size: 1rem; letter-spacing: 0.1em; color: var(--white);
+      margin-bottom: 0.85rem; padding-bottom: 0.5rem;
+      border-bottom: 1px solid rgba(255,255,255,0.15);
+    }
+    .skill-group ul {
+      list-style: none; font-size: 12px; color: rgba(255,255,255,0.52);
+      line-height: 2.2; font-style: normal; font-weight: 400; font-variation-settings: "wdth" 75;
+    }
+    .skill-group ul li::before { content: '▸ '; color: var(--blue-light); font-size: 9px; }
+
+    /* ── CONTACT ── */
+    .contact-intro {
+      font-size: 14px; color: rgba(255,255,255,0.55);
+      max-width: 480px; margin-bottom: 2rem; line-height: 1.9;
+      font-style: normal; font-weight: 400; font-variation-settings: "wdth" 75;
+    }
+    .contact-links { display: flex; flex-direction: column; gap: 3px; }
+    .contact-link {
+      display: flex; align-items: center; text-decoration: none;
+      padding: 13px 18px;
+      background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.14);
+      border-left: 3px solid transparent; transition: all 0.15s;
+    }
+    .contact-link:hover { border-left-color: var(--red); background: rgba(255,255,255,0.12); }
+    .contact-link:hover .contact-link-text { color: var(--white); }
+    .contact-label {
+      font-style: italic; font-weight: 900; font-variation-settings: "wdth" 75;
+      font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--blue-light); width: 72px; flex-shrink: 0;
+    }
+    .contact-sep { color: rgba(255,255,255,0.2); margin: 0 1rem; }
+    .contact-link-text {
+      font-size: 12px; color: rgba(255,255,255,0.45); transition: color 0.15s;
+      font-style: normal; font-weight: 400; font-variation-settings: "wdth" 75;
+    }
+
+    /* ── FOOTER ── */
+    footer { border-top: 1px solid rgba(255,255,255,0.15); padding: 2rem; text-align: center; }
+    footer p {
+      font-style: italic; font-weight: 900; font-variation-settings: "wdth" 75;
+      font-size: 11px; color: rgba(255,255,255,0.3); letter-spacing: 0.12em;
+    }
+    footer a { color: rgba(0,208,255,0.6); text-decoration: none; }
+    footer a:hover { color: var(--blue-light); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
       .about-grid { grid-template-columns: 1fr; }
-      .nav-logo { padding: 0 1rem; font-size: 18px; }
-      .nav-links a { padding: 0 0.75rem; font-size: 11px; }
+      .hero-name { font-size: clamp(3.5rem, 18vw, 5rem); }
+      .nav-links a { padding: 0 0.7rem; font-size: 12px; }
       section { padding: 4rem 1.25rem; }
+      .expand-meta { display: none; }
+      .sec-ghost { font-size: 5rem; }
+      .expand-topics { grid-template-columns: 1fr; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -520,184 +544,694 @@
 </head>
 <body>
 
+  <!-- NAV -->
   <nav>
-    <div class="nav-logo">BT<span class="nav-logo-slash">/</span></div>
+    <div class="nav-logo">BT<span class="nav-slash">/</span></div>
     <ul class="nav-links">
-      <li><a href="#about"><span class="num">01</span> About</a></li>
-      <li><a href="#projects"><span class="num">02</span> Projects</a></li>
-      <li><a href="#skills"><span class="num">03</span> Skills</a></li>
-      <li><a href="#contact"><span class="num">04</span> Contact</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#learn">Learning</a></li>
+      <li><a href="#modules">Modules</a></li>
+      <li><a href="#contact">Contact</a></li>
     </ul>
   </nav>
 
   <main>
 
+    <!-- HERO -->
     <section id="hero">
+      <span class="bg-mark">BT</span>
       <div class="hero-eyebrow">
-        <div class="hero-eyebrow-line"></div>
-        <span>BSc Computer Science &nbsp;·&nbsp; University of Westminster</span>
+        <div class="hero-eyebrow-bar"></div>
+        <span class="hero-eyebrow-text">BSc Computer Science &nbsp;·&nbsp; University of Westminster</span>
       </div>
-      <h1 class="hero-name">
-        Bilal<br />
-        <span class="hero-name-accent">Tariq</span>
-      </h1>
-      <div class="hero-slash-row">// // // // // // // // // // // // // // // // // // // //</div>
+      <h1 class="hero-name">BILAL<br>TARIQ</h1>
+      <div class="hero-label-strip">
+        <div class="hero-label-bar"></div>
+        <span class="hero-label-text">SYSTEMS &amp; IT ENGINEERING</span>
+        <span class="hero-label-sub">COMPTIA SECURITY+</span>
+      </div>
       <p class="hero-sub">
-        Final-year CS student with a focus on cybersecurity and DevOps.
-        CompTIA Security+ certified. Interested in how infrastructure
-        breaks — and how to stop it from happening.
+        Final-year Computer Science student graduating July 2026 with a predicted First Class Honours.
+        My focus is systems administration, IT infrastructure, and cloud security — built through
+        my cloud honeypot final year project, Active Directory training, and hands-on work via TryHackMe.
+        I want to understand how systems work at every layer, keep them running, and keep them secure.
       </p>
       <div class="hero-btns">
-        <a class="btn btn-primary" href="#projects"><span>View Projects</span></a>
-        <a class="btn btn-ghost" href="https://github.com/Bilal05Tariq" target="_blank" rel="noopener"><span>GitHub</span></a>
-        <a class="btn btn-ghost" href="https://linkedin.com/in/bilal-tariq-56bb352a5" target="_blank" rel="noopener"><span>LinkedIn</span></a>
+        <a class="btn btn-primary" href="#projects"><span>VIEW PROJECTS</span></a>
+        <a class="btn btn-ghost" href="https://github.com/Bilal05Tariq" target="_blank" rel="noopener"><span>GITHUB</span></a>
+        <a class="btn btn-ghost" href="https://linkedin.com/in/bilal-tariq-56bb352a5" target="_blank" rel="noopener"><span>LINKEDIN</span></a>
       </div>
     </section>
 
-    <div class="section-divider"><span>///</span></div>
+    <div class="p3r-rule"></div>
 
-    <section id="about">
-      <div class="section-header">
-        <span class="section-num">01</span>
-        <h2 class="section-title">About</h2>
-        <div class="section-line"></div>
-      </div>
-      <p class="about-body">
-        I'm a Computer Science student at the University of Westminster, graduating July 2026
-        with a predicted First Class Honours. My final year project involved building a
-        cloud-based honeypot with automated threat analysis — combining my interest in
-        defensive security with real-world cloud infrastructure.
-      </p>
-      <div class="about-grid">
-        <div class="info-panel">
-          <p class="info-panel-label">Certifications</p>
-          <div class="tag-list">
-            <span class="tag">CompTIA Security+</span>
-            <span class="tag">BSc Computer Science</span>
-          </div>
+    <!-- ABOUT -->
+    <div class="section-wrap">
+      <section id="about">
+        <span class="sec-ghost">PROFILE</span>
+        <div class="sec-head">
+          <div class="sec-eyebrow">01 / About</div>
+          <h2 class="sec-title">PROFILE</h2>
         </div>
-        <div class="info-panel">
-          <p class="info-panel-label">Currently looking for</p>
-          <div class="tag-list">
-            <span class="tag">IT Support</span>
-            <span class="tag">Systems Engineering</span>
-            <span class="tag">DevOps</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <div class="section-divider"><span>///</span></div>
-
-    <section id="projects">
-      <div class="section-header">
-        <span class="section-num">02</span>
-        <h2 class="section-title">Projects</h2>
-        <div class="section-line"></div>
-      </div>
-      <div class="project-card">
-        <div class="project-header">
-          <span class="project-title">Cloud-Based Honeypot with Automated Threat Analysis</span>
-          <span class="project-badge">FYP</span>
-        </div>
-        <p class="project-desc">
-          Deployed a deception environment in the cloud to capture and analyse real attack
-          traffic. Built an automated pipeline to classify threat types and generate reports,
-          combining cloud infrastructure with practical defensive security techniques.
+        <p class="about-body">
+          I'm a Computer Science student at the University of Westminster with a strong interest in
+          systems engineering, IT infrastructure, and cloud security. My final year project — a
+          cloud-based honeypot with automated threat analysis — sits at the intersection of
+          infrastructure deployment and defensive security: provisioning cloud environments,
+          configuring services, and building automated pipelines to process real attack data.
+          Outside of my degree I'm working through Active Directory on TryHackMe, building
+          practical sysadmin skills that complement my academic background. I hold a CompTIA
+          Security+ certification and I'm looking for roles in IT support, systems engineering,
+          or DevOps where I can grow my infrastructure knowledge hands-on.
         </p>
-        <div class="project-tech">
-          <span class="tech-chip">Python</span>
-          <span class="tech-chip">AWS</span>
-          <span class="tech-chip">Threat Analysis</span>
-          <span class="tech-chip">Linux</span>
+        <div class="about-grid">
+          <div class="info-panel">
+            <p class="info-panel-label">Certifications</p>
+            <div class="tag-list">
+              <span class="tag">CompTIA Security+</span>
+              <span class="tag">BSc Computer Science</span>
+            </div>
+          </div>
+          <div class="info-panel">
+            <p class="info-panel-label">Target Roles</p>
+            <div class="tag-list">
+              <span class="tag">IT Support</span>
+              <span class="tag">Systems Engineering</span>
+              <span class="tag">DevOps</span>
+              <span class="tag">Cloud Infrastructure</span>
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="project-card" style="opacity: 0.4; border-style: dashed;">
-        <div class="project-header">
-          <span class="project-title">More projects coming soon</span>
-        </div>
-        <p class="project-desc">Additional work will be added here.</p>
-      </div>
-    </section>
+      </section>
+    </div>
 
-    <div class="section-divider"><span>///</span></div>
+    <div class="p3r-rule"></div>
 
-    <section id="skills">
-      <div class="section-header">
-        <span class="section-num">03</span>
-        <h2 class="section-title">Skills</h2>
-        <div class="section-line"></div>
-      </div>
-      <div class="skills-grid">
-        <div class="skill-group">
-          <p class="skill-group-title">Languages</p>
-          <ul>
-            <li>Python</li>
-            <li>Bash / Shell</li>
-            <li>HTML / CSS</li>
-          </ul>
+    <!-- PROJECTS -->
+    <div class="section-wrap">
+      <section id="projects">
+        <span class="sec-ghost">WORK</span>
+        <div class="sec-head">
+          <div class="sec-eyebrow">02 / Projects</div>
+          <h2 class="sec-title">PROJECTS</h2>
         </div>
-        <div class="skill-group">
-          <p class="skill-group-title">Security</p>
-          <ul>
-            <li>CompTIA Security+</li>
-            <li>Penetration Testing</li>
-            <li>OSINT</li>
-            <li>Threat Analysis</li>
-          </ul>
-        </div>
-        <div class="skill-group">
-          <p class="skill-group-title">Infrastructure</p>
-          <ul>
-            <li>AWS</li>
-            <li>Linux (Ubuntu)</li>
-            <li>Networking</li>
-            <li>Windows Server</li>
-          </ul>
-        </div>
-        <div class="skill-group">
-          <p class="skill-group-title">Tools</p>
-          <ul>
-            <li>Git / GitHub</li>
-            <li>VS Code</li>
-          </ul>
-        </div>
-      </div>
-    </section>
 
-    <div class="section-divider"><span>///</span></div>
+        <div class="expand-list">
 
-    <section id="contact">
-      <div class="section-header">
-        <span class="section-num">04</span>
-        <h2 class="section-title">Contact</h2>
-        <div class="section-line"></div>
-      </div>
-      <p class="contact-body">Open to IT support, systems engineering, and DevOps opportunities.</p>
-      <div class="contact-links">
-        <a class="contact-link" href="https://linkedin.com/in/bilal-tariq-56bb352a5" target="_blank" rel="noopener">
-          <span class="contact-link-label">LinkedIn</span>
-          <span class="contact-link-sep">//</span>
-          <span class="contact-link-text">linkedin.com/in/bilal-tariq-56bb352a5</span>
-        </a>
-        <a class="contact-link" href="https://github.com/Bilal05Tariq" target="_blank" rel="noopener">
-          <span class="contact-link-label">GitHub</span>
-          <span class="contact-link-sep">//</span>
-          <span class="contact-link-text">github.com/Bilal05Tariq</span>
-        </a>
-        <a class="contact-link" href="mailto:your.email@example.com">
-          <span class="contact-link-label">Email</span>
-          <span class="contact-link-sep">//</span>
-          <span class="contact-link-text">your.email@example.com</span>
-        </a>
-      </div>
-    </section>
+          <!-- PROJECT 1 -->
+          <div class="expand-item open" id="proj-honeypot">
+            <div class="expand-row" onclick="toggleExpand('proj-honeypot')">
+              <div class="expand-num">01</div>
+              <div class="expand-row-content">
+                <div class="expand-category">Final Year Project · Cloud Security</div>
+                <div class="expand-title">CLOUD-BASED HONEYPOT WITH AUTOMATED THREAT ANALYSIS</div>
+              </div>
+              <div class="expand-meta">
+                <span class="expand-badge badge-red">FYP</span>
+                <span class="expand-badge badge-blue">2025–2026</span>
+              </div>
+              <div class="expand-chevron">›</div>
+            </div>
+            <div class="expand-body">
+              <p class="expand-desc">
+                Designed and deployed a cloud-based deception environment to capture and analyse
+                real-world attack traffic. The project involved provisioning cloud infrastructure
+                on AWS, deploying a configurable honeypot service to attract adversarial activity,
+                and building an automated analysis pipeline that classifies threat types, extracts
+                indicators of compromise, and generates structured reports — all without manual
+                intervention. The work demonstrates practical skills in cloud deployment, Linux
+                administration, scripted automation, and defensive security thinking. A video
+                demonstration of the project is included in the full documentation linked below.
+              </p>
+              <div class="expand-topics">
+                <div class="expand-topic-group">
+                  <div class="expand-topic-heading">INFRASTRUCTURE</div>
+                  <ul>
+                    <li>AWS EC2 provisioning</li>
+                    <li>Linux server configuration</li>
+                    <li>Network &amp; firewall setup</li>
+                    <li>SSH hardening</li>
+                    <li>Cloud security groups</li>
+                  </ul>
+                </div>
+                <div class="expand-topic-group">
+                  <div class="expand-topic-heading">HONEYPOT DESIGN</div>
+                  <ul>
+                    <li>Cowrie SSH/Telnet honeypot</li>
+                    <li>Deception environment config</li>
+                    <li>Attack traffic capture</li>
+                    <li>Log ingestion pipeline</li>
+                  </ul>
+                </div>
+                <div class="expand-topic-group">
+                  <div class="expand-topic-heading">THREAT ANALYSIS</div>
+                  <ul>
+                    <li>Automated log classification</li>
+                    <li>IOC extraction</li>
+                    <li>Attack pattern identification</li>
+                    <li>Automated report generation</li>
+                  </ul>
+                </div>
+                <div class="expand-topic-group">
+                  <div class="expand-topic-heading">STACK</div>
+                  <ul>
+                    <li>Python (automation + analysis)</li>
+                    <li>AWS (EC2, S3)</li>
+                    <li>Linux (Ubuntu)</li>
+                    <li>Cowrie</li>
+                    <li>Bash scripting</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="tech-row">
+                <span class="tech-chip">Python</span>
+                <span class="tech-chip">AWS</span>
+                <span class="tech-chip">Linux</span>
+                <span class="tech-chip">Cowrie</span>
+                <span class="tech-chip">Bash</span>
+                <span class="tech-chip">Threat Analysis</span>
+              </div>
+              <div class="expand-links">
+                <a class="expand-link expand-link-primary" href="https://github.com/Bilal05Tariq/cloud-honeypot-analysis" target="_blank" rel="noopener"><span>⌥ GitHub Repository</span></a>
+                <a class="expand-link expand-link-ghost" href="https://docs.google.com/document/d/1CY17K9-v8NUGNNVEKS0j2plHPQo39JP-sSVDvkMI6Jw/edit?usp=sharing" target="_blank" rel="noopener"><span>↗ Full Documentation</span></a>
+                <span class="expand-link-note">Documentation includes a link to the video demonstration</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- PROJECT PLACEHOLDER -->
+          <div class="expand-item" style="opacity:0.35; pointer-events:none;">
+            <div class="expand-row">
+              <div class="expand-num">02</div>
+              <div class="expand-row-content">
+                <div class="expand-category">Coming Soon</div>
+                <div class="expand-title">NEXT PROJECT</div>
+              </div>
+              <div class="expand-meta"><span class="expand-badge badge-grey">LOCKED</span></div>
+              <div class="expand-chevron">›</div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+    </div>
+
+    <div class="p3r-rule"></div>
+
+    <!-- SKILLS -->
+    <div class="section-wrap">
+      <section id="skills">
+        <span class="sec-ghost">SKILLS</span>
+        <div class="sec-head">
+          <div class="sec-eyebrow">03 / Skills</div>
+          <h2 class="sec-title">SKILLS</h2>
+        </div>
+        <div class="skills-grid">
+          <div class="skill-group">
+            <p class="skill-group-title">Languages</p>
+            <ul>
+              <li>Python</li>
+              <li>Bash / Shell</li>
+              <li>HTML / CSS</li>
+            </ul>
+          </div>
+          <div class="skill-group">
+            <p class="skill-group-title">Security</p>
+            <ul>
+              <li>CompTIA Security+</li>
+              <li>Penetration Testing</li>
+              <li>OSINT</li>
+              <li>Threat Analysis</li>
+              <li>Honeypot Deployment</li>
+            </ul>
+          </div>
+          <div class="skill-group">
+            <p class="skill-group-title">Infrastructure</p>
+            <ul>
+              <li>AWS (EC2, S3)</li>
+              <li>Linux (Ubuntu)</li>
+              <li>Windows Server / AD</li>
+              <li>Networking fundamentals</li>
+              <li>SSH / Firewall config</li>
+            </ul>
+          </div>
+          <div class="skill-group">
+            <p class="skill-group-title">Tools &amp; Platforms</p>
+            <ul>
+              <li>Git / GitHub</li>
+              <li>VS Code</li>
+              <li>TryHackMe</li>
+              <li>Cowrie</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="p3r-rule"></div>
+
+    <!-- LEARNING TREE -->
+    <div class="section-wrap">
+      <section id="learn">
+        <span class="sec-ghost">LEARN</span>
+        <div class="sec-head">
+          <div class="sec-eyebrow">04 / TryHackMe</div>
+          <h2 class="sec-title">LEARNING TREE</h2>
+        </div>
+        <p class="about-body" style="margin-bottom:2rem;">
+          Active learning log tracking progress through TryHackMe paths and self-study.
+          Focused on building the sysadmin and infrastructure knowledge that complements
+          my degree and security background. Click a module to expand notes and key concepts.
+        </p>
+
+        <div class="expand-list">
+
+          <!-- LEARN 1: Active Directory -->
+          <div class="expand-item open" id="learn-ad">
+            <div class="expand-row" onclick="toggleExpand('learn-ad')">
+              <div class="expand-num">01</div>
+              <div class="expand-row-content">
+                <div class="expand-category">TryHackMe · Windows Administration</div>
+                <div class="expand-title">WINDOWS ACTIVE DIRECTORY</div>
+              </div>
+              <div class="expand-meta">
+                <span class="expand-badge badge-red">IN PROGRESS</span>
+              </div>
+              <div class="expand-chevron">›</div>
+            </div>
+            <div class="expand-body">
+              <p class="expand-desc">
+                Working through Active Directory administration via TryHackMe, covering the core
+                concepts used in real enterprise environments. Active Directory is central to
+                systems engineering and IT support roles — understanding how domains, group
+                policies, and authentication work is essential for administering Windows
+                infrastructure at any scale. My ongoing notes and documentation for this
+                module are linked below.
+              </p>
+              <div class="expand-topics">
+                <div class="expand-topic-group">
+                  <div class="expand-topic-heading">CORE CONCEPTS</div>
+                  <ul>
+                    <li>Windows Domains</li>
+                    <li>Active Directory structure</li>
+                    <li>Domain Controller role</li>
+                    <li>Centralised identity management</li>
+                    <li>Users, Groups &amp; Computers</li>
+                  </ul>
+                </div>
+                <div class="expand-topic-group">
+                  <div class="expand-topic-heading">ADMINISTRATION</div>
+                  <ul>
+                    <li>Organisational Units (OUs)</li>
+                    <li>Group Policy Objects (GPOs)</li>
+                    <li>Delegation of control</li>
+                    <li>RSAT tools</li>
+                    <li>Managing via MMC</li>
+                  </ul>
+                </div>
+                <div class="expand-topic-group">
+                  <div class="expand-topic-heading">AUTHENTICATION</div>
+                  <ul>
+                    <li>Kerberos authentication</li>
+                    <li>NTLM fallback</li>
+                    <li>Trees, Forests &amp; Trusts</li>
+                    <li>AD DS vs Azure AD</li>
+                  </ul>
+                </div>
+                <div class="expand-topic-group">
+                  <div class="expand-topic-heading">SECURITY NOTES</div>
+                  <ul>
+                    <li>Privileged account risks</li>
+                    <li>Pass-the-Hash awareness</li>
+                    <li>Kerberoasting overview</li>
+                    <li>Enumeration with BloodHound</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="expand-links">
+                <a class="expand-link expand-link-ghost" href="https://docs.google.com/document/d/1Y7Ti1w7lhoAs0ih8Sk3OVRYlNMHJda96kbKWIXteb-E/edit?usp=sharing" target="_blank" rel="noopener"><span>↗ My AD Notes &amp; Documentation</span></a>
+              </div>
+            </div>
+          </div>
+
+          <!-- LEARN 2 (locked) -->
+          <div class="expand-item" style="opacity:0.32; pointer-events:none;">
+            <div class="expand-row">
+              <div class="expand-num">02</div>
+              <div class="expand-row-content">
+                <div class="expand-category">TryHackMe · Coming Soon</div>
+                <div class="expand-title">NEXT MODULE</div>
+              </div>
+              <div class="expand-meta"><span class="expand-badge badge-grey">LOCKED</span></div>
+              <div class="expand-chevron">›</div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+    </div>
+
+    <div class="p3r-rule"></div>
+
+    <!-- UNIVERSITY MODULES -->
+    <div class="section-wrap">
+      <section id="modules">
+        <span class="sec-ghost">UNI</span>
+        <div class="sec-head">
+          <div class="sec-eyebrow">05 / University of Westminster</div>
+          <h2 class="sec-title">MODULES</h2>
+        </div>
+        <p class="about-body" style="margin-bottom:2rem;">
+          Full list of modules studied across my BSc Computer Science degree.
+          Click a module to see what it covered.
+        </p>
+
+        <div class="expand-list">
+
+          <div class="expand-item" id="mod-sd1">
+            <div class="expand-row" onclick="toggleExpand('mod-sd1')">
+              <div class="expand-num">01</div>
+              <div class="expand-row-content">
+                <div class="expand-category">Year 1 · Programming</div>
+                <div class="expand-title">SOFTWARE DEVELOPMENT I</div>
+              </div>
+              <div class="expand-meta"><span class="expand-badge badge-blue">COMPLETE</span></div>
+              <div class="expand-chevron">›</div>
+            </div>
+            <div class="expand-body">
+              <p class="expand-desc">Introduction to programming fundamentals and software development practices. Covered core concepts in structured programming, problem solving, and writing clean, maintainable code.</p>
+            </div>
+          </div>
+
+          <div class="expand-item" id="mod-maths">
+            <div class="expand-row" onclick="toggleExpand('mod-maths')">
+              <div class="expand-num">02</div>
+              <div class="expand-row-content">
+                <div class="expand-category">Year 1 · Mathematics</div>
+                <div class="expand-title">MATHEMATICS FOR COMPUTING</div>
+              </div>
+              <div class="expand-meta"><span class="expand-badge badge-blue">COMPLETE</span></div>
+              <div class="expand-chevron">›</div>
+            </div>
+            <div class="expand-body">
+              <p class="expand-desc">Mathematical foundations for computer science including discrete mathematics, logic, sets, Boolean algebra, and introductory number theory — all directly applicable to computing and systems design.</p>
+            </div>
+          </div>
+
+          <div class="expand-item" id="mod-trends">
+            <div class="expand-row" onclick="toggleExpand('mod-trends')">
+              <div class="expand-num">03</div>
+              <div class="expand-row-content">
+                <div class="expand-category">Year 1 · Industry</div>
+                <div class="expand-title">TRENDS IN COMPUTER SCIENCE</div>
+              </div>
+              <div class="expand-meta"><span class="expand-badge badge-blue">COMPLETE</span></div>
+              <div class="expand-chevron">›</div>
+            </div>
+            <div class="expand-body">
+              <p class="expand-desc">Exploration of emerging topics and current directions in computer science, covering how the field evolves and how new technologies enter industry — useful context for understanding the broader landscape of IT and systems work.</p>
+            </div>
+          </div>
+
+          <div class="expand-item" id="mod-systems">
+            <div class="expand-row" onclick="toggleExpand('mod-systems')">
+              <div class="expand-num">04</div>
+              <div class="expand-row-content">
+                <div class="expand-category">Year 1 · Systems</div>
+                <div class="expand-title">COMPUTER SYSTEMS FUNDAMENTALS</div>
+              </div>
+              <div class="expand-meta"><span class="expand-badge badge-blue">COMPLETE</span></div>
+              <div class="expand-chevron">›</div>
+            </div>
+            <div class="expand-body">
+              <p class="expand-desc">Core systems knowledge covering computer architecture, hardware components, operating system principles, memory management, and how software interacts with underlying hardware — foundational for any systems engineering or IT role.</p>
+            </div>
+          </div>
+
+          <div class="expand-item" id="mod-sd2">
+            <div class="expand-row" onclick="toggleExpand('mod-sd2')">
+              <div class="expand-num">05</div>
+              <div class="expand-row-content">
+                <div class="expand-category">Year 1 · Programming</div>
+                <div class="expand-title">SOFTWARE DEVELOPMENT II</div>
+              </div>
+              <div class="expand-meta"><span class="expand-badge badge-blue">COMPLETE</span></div>
+              <div class="expand-chevron">›</div>
+            </div>
+            <div class="expand-body">
+              <p class="expand-desc">Building on Software Development I — deeper coverage of data structures, algorithms, and more complex programming patterns. Reinforced structured problem-solving and code quality.</p>
+            </div>
+          </div>
+
+          <div class="expand-item" id="mod-web">
+            <div class="expand-row" onclick="toggleExpand('mod-web')">
+              <div class="expand-num">06</div>
+              <div class="expand-row-content">
+                <div class="expand-category">Year 1 · Web</div>
+                <div class="expand-title">WEB DESIGN AND DEVELOPMENT</div>
+              </div>
+              <div class="expand-meta"><span class="expand-badge badge-blue">COMPLETE</span></div>
+              <div class="expand-chevron">›</div>
+            </div>
+            <div class="expand-body">
+              <p class="expand-desc">Fundamentals of web technologies including HTML, CSS, and basic JavaScript. Practical focus on building and structuring web pages — directly applicable to front-end development and understanding web infrastructure.</p>
+            </div>
+          </div>
+
+          <div class="expand-item" id="mod-itsec">
+            <div class="expand-row" onclick="toggleExpand('mod-itsec')">
+              <div class="expand-num">07</div>
+              <div class="expand-row-content">
+                <div class="expand-category">Year 2 · Security</div>
+                <div class="expand-title">INFORMATION TECHNOLOGY SECURITY</div>
+              </div>
+              <div class="expand-meta"><span class="expand-badge badge-blue">COMPLETE</span></div>
+              <div class="expand-chevron">›</div>
+            </div>
+            <div class="expand-body">
+              <p class="expand-desc">Broad coverage of IT security principles including confidentiality, integrity, availability, access control, cryptography fundamentals, and security policies. Provided strong grounding for my CompTIA Security+ certification and subsequent security work.</p>
+            </div>
+          </div>
+
+          <div class="expand-item" id="mod-oop">
+            <div class="expand-row" onclick="toggleExpand('mod-oop')">
+              <div class="expand-num">08</div>
+              <div class="expand-row-content">
+                <div class="expand-category">Year 2 · Programming</div>
+                <div class="expand-title">OBJECT ORIENTED PROGRAMMING</div>
+              </div>
+              <div class="expand-meta"><span class="expand-badge badge-blue">COMPLETE</span></div>
+              <div class="expand-chevron">›</div>
+            </div>
+            <div class="expand-body">
+              <p class="expand-desc">In-depth study of OOP principles — classes, inheritance, polymorphism, encapsulation, and design patterns. Heavily practical with a focus on writing structured, maintainable, real-world code.</p>
+            </div>
+          </div>
+
+          <div class="expand-item" id="mod-db">
+            <div class="expand-row" onclick="toggleExpand('mod-db')">
+              <div class="expand-num">09</div>
+              <div class="expand-row-content">
+                <div class="expand-category">Year 2 · Data</div>
+                <div class="expand-title">DATABASE SYSTEMS</div>
+              </div>
+              <div class="expand-meta"><span class="expand-badge badge-blue">COMPLETE</span></div>
+              <div class="expand-chevron">›</div>
+            </div>
+            <div class="expand-body">
+              <p class="expand-desc">Relational database design and querying using SQL. Covered normalisation, entity-relationship modelling, transactions, and database administration basics — relevant for backend systems and infrastructure roles that interact with data stores.</p>
+            </div>
+          </div>
+
+          <div class="expand-item" id="mod-group">
+            <div class="expand-row" onclick="toggleExpand('mod-group')">
+              <div class="expand-num">10</div>
+              <div class="expand-row-content">
+                <div class="expand-category">Year 2 · Teamwork</div>
+                <div class="expand-title">SOFTWARE DEVELOPMENT GROUP PROJECT</div>
+              </div>
+              <div class="expand-meta"><span class="expand-badge badge-blue">COMPLETE</span></div>
+              <div class="expand-chevron">›</div>
+            </div>
+            <div class="expand-body">
+              <p class="expand-desc">Collaborative software project working in a team under Agile methodologies. Covered project planning, version control workflows, task management, and delivering a working product to a brief — mirrors real team-based engineering environments.</p>
+            </div>
+          </div>
+
+          <div class="expand-item" id="mod-clientserver">
+            <div class="expand-row" onclick="toggleExpand('mod-clientserver')">
+              <div class="expand-num">11</div>
+              <div class="expand-row-content">
+                <div class="expand-category">Year 2 · Networking</div>
+                <div class="expand-title">CLIENT-SERVER ARCHITECTURES</div>
+              </div>
+              <div class="expand-meta"><span class="expand-badge badge-blue">COMPLETE</span></div>
+              <div class="expand-chevron">›</div>
+            </div>
+            <div class="expand-body">
+              <p class="expand-desc">Study of client-server models, protocols, sockets, and networked application design. Directly relevant to understanding how services communicate across infrastructure — foundational for systems and DevOps roles.</p>
+            </div>
+          </div>
+
+          <div class="expand-item" id="mod-serverside">
+            <div class="expand-row" onclick="toggleExpand('mod-serverside')">
+              <div class="expand-num">12</div>
+              <div class="expand-row-content">
+                <div class="expand-category">Year 2 · Web</div>
+                <div class="expand-title">SERVER-SIDE WEB DEVELOPMENT</div>
+              </div>
+              <div class="expand-meta"><span class="expand-badge badge-blue">COMPLETE</span></div>
+              <div class="expand-chevron">›</div>
+            </div>
+            <div class="expand-body">
+              <p class="expand-desc">Back-end web development covering server-side scripting, RESTful APIs, and web application architecture. Useful context for understanding how web services sit on top of server infrastructure.</p>
+            </div>
+          </div>
+
+          <div class="expand-item" id="mod-digital">
+            <div class="expand-row" onclick="toggleExpand('mod-digital')">
+              <div class="expand-num">13</div>
+              <div class="expand-row-content">
+                <div class="expand-category">Year 3 · Strategy</div>
+                <div class="expand-title">DIGITAL STRATEGY</div>
+              </div>
+              <div class="expand-meta"><span class="expand-badge badge-blue">COMPLETE</span></div>
+              <div class="expand-chevron">›</div>
+            </div>
+            <div class="expand-body">
+              <p class="expand-desc">Examination of how organisations plan and execute technology adoption, digital transformation, and IT governance. Provides business context for technical decisions — useful for understanding how IT teams operate within wider organisations.</p>
+            </div>
+          </div>
+
+          <div class="expand-item" id="mod-cyber">
+            <div class="expand-row" onclick="toggleExpand('mod-cyber')">
+              <div class="expand-num">14</div>
+              <div class="expand-row-content">
+                <div class="expand-category">Year 3 · Security</div>
+                <div class="expand-title">CYBER SECURITY</div>
+              </div>
+              <div class="expand-meta"><span class="expand-badge badge-blue">COMPLETE</span></div>
+              <div class="expand-chevron">›</div>
+            </div>
+            <div class="expand-body">
+              <p class="expand-desc">Advanced security module covering penetration testing methodologies, OSINT, vulnerability assessment, and network security. Included assessed coursework on offensive security techniques — directly applied in my FYP and TryHackMe learning.</p>
+            </div>
+          </div>
+
+          <div class="expand-item" id="mod-ai">
+            <div class="expand-row" onclick="toggleExpand('mod-ai')">
+              <div class="expand-num">15</div>
+              <div class="expand-row-content">
+                <div class="expand-category">Year 3 · AI</div>
+                <div class="expand-title">APPLIED AI</div>
+              </div>
+              <div class="expand-meta"><span class="expand-badge badge-blue">COMPLETE</span></div>
+              <div class="expand-chevron">›</div>
+            </div>
+            <div class="expand-body">
+              <p class="expand-desc">Practical application of machine learning and AI concepts — model training, evaluation, and real-world deployment considerations. Broadens understanding of where automation and intelligent systems sit within modern infrastructure.</p>
+            </div>
+          </div>
+
+          <div class="expand-item" id="mod-fyp">
+            <div class="expand-row" onclick="toggleExpand('mod-fyp')">
+              <div class="expand-num">16</div>
+              <div class="expand-row-content">
+                <div class="expand-category">Year 3 · Final Year Project</div>
+                <div class="expand-title">COMPUTER SCIENCE FINAL PROJECT</div>
+              </div>
+              <div class="expand-meta"><span class="expand-badge badge-red">FYP</span></div>
+              <div class="expand-chevron">›</div>
+            </div>
+            <div class="expand-body">
+              <p class="expand-desc">The capstone of the degree — an independently designed and executed project demonstrating the full range of skills developed across the programme. My project was a cloud-based honeypot with automated threat analysis. See the Projects section for full details.</p>
+            </div>
+          </div>
+
+          <div class="expand-item" id="mod-iot">
+            <div class="expand-row" onclick="toggleExpand('mod-iot')">
+              <div class="expand-num">17</div>
+              <div class="expand-row-content">
+                <div class="expand-category">Year 3 · Emerging Tech</div>
+                <div class="expand-title">INTERNET OF THINGS</div>
+              </div>
+              <div class="expand-meta"><span class="expand-badge badge-blue">COMPLETE</span></div>
+              <div class="expand-chevron">›</div>
+            </div>
+            <div class="expand-body">
+              <p class="expand-desc">Study of IoT architectures, device communication protocols, edge computing, and the security challenges specific to connected devices. Relevant to understanding how infrastructure extends beyond traditional servers into embedded and networked hardware.</p>
+            </div>
+          </div>
+
+        </div>
+      </section>
+    </div>
+
+    <div class="p3r-rule"></div>
+
+    <!-- CONTACT -->
+    <div class="section-wrap">
+      <section id="contact">
+        <span class="sec-ghost">CONTACT</span>
+        <div class="sec-head">
+          <div class="sec-eyebrow">06 / Contact</div>
+          <h2 class="sec-title">CONTACT</h2>
+        </div>
+        <p class="contact-intro">
+          Open to IT support, systems engineering, and DevOps opportunities.
+          Currently available from July 2026 upon graduation.
+        </p>
+        <div class="contact-links">
+          <a class="contact-link" href="https://linkedin.com/in/bilal-tariq-56bb352a5" target="_blank" rel="noopener">
+            <span class="contact-label">LinkedIn</span>
+            <span class="contact-sep">//</span>
+            <span class="contact-link-text">linkedin.com/in/bilal-tariq-56bb352a5</span>
+          </a>
+          <a class="contact-link" href="https://github.com/Bilal05Tariq" target="_blank" rel="noopener">
+            <span class="contact-label">GitHub</span>
+            <span class="contact-sep">//</span>
+            <span class="contact-link-text">github.com/Bilal05Tariq</span>
+          </a>
+          <a class="contact-link" href="mailto:your.email@example.com">
+            <span class="contact-label">Email</span>
+            <span class="contact-sep">//</span>
+            <span class="contact-link-text">your.email@example.com</span>
+          </a>
+        </div>
+      </section>
+    </div>
 
   </main>
 
   <footer>
-    <p>Bilal Tariq &nbsp;·&nbsp; <a href="https://github.com/Bilal05Tariq">github.com/Bilal05Tariq</a></p>
+    <p>BILAL TARIQ &nbsp;·&nbsp; <a href="https://github.com/Bilal05Tariq">github.com/Bilal05Tariq</a> &nbsp;·&nbsp; 2026</p>
   </footer>
+
+  <script>
+    // Toggle expand items
+    function toggleExpand(id) {
+      const item = document.getElementById(id);
+      item.classList.toggle('open');
+    }
+
+    // Active nav link on scroll
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navLinks.forEach(a => a.classList.remove('active'));
+          const active = document.querySelector(`.nav-links a[href="#${entry.target.id}"]`);
+          if (active) active.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-40% 0px -55% 0px' });
+
+    sections.forEach(s => observer.observe(s));
+  </script>
 
 </body>
 </html>
